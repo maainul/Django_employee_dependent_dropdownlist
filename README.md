@@ -189,7 +189,7 @@ urlpatterns = [
     path('ajax/load-designations/', views.load_designations, name='ajax_load_designations'),  # <-- this one here
 ]
 ```
-# templates/person_form.html
+# templates/employee_form.html
 
 ```
 {% extends 'base.html' %}
