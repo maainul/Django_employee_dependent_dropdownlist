@@ -267,3 +267,74 @@ class EmployeeForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields['designation'].queryset = self.instance.department.designation_set.order_by('name')
 ```
+# Add templates/base.html outside the app
+```
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Simple ERP{% endblock %}</title>
+    <style type="text/css">
+      .errorlist {
+        margin: 0;
+        padding: 0;
+      }
+      .errorlist li {
+        list-style: none;
+        font-size: 90%;
+        color: red;
+      }
+      .errorlist ~ input,
+      .errorlist ~ select {
+        border-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple ERP</h1>
+    <hr>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
+```
+# templates/employee/employee_list.html
+```
+{% extends 'base.html' %}
+
+{% block title %}Human Resources Module{% endblock %}
+
+{% block content %}
+  <h2>Human Resources Module » Employee Management</h2>
+
+  <p>
+    <a href="{% url 'employee_add' %}">Add person</a>
+  </p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Department</th>
+        <th>Designation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for person in employee %}
+        <tr>
+          <td><a href="{% url 'employee_change' person.pk %}">{{ person.name }}</a></td>
+          <td>{{ person.birthdate }}</td>
+          <td>{{ person.department.name }}</td>
+          <td>{{ person.designation.name }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No person in the database. <a href="{% url 'employee_add' %}">Add the first person</a>.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+```
