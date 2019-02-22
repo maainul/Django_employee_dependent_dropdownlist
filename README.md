@@ -64,7 +64,7 @@ class Department(models.Model):
         return self.name
 
 class Designation(models.Model):
-    department = models.ForeignKey(Country, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
 
     def __str__(self):
