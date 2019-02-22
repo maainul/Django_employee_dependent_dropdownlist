@@ -1,3 +1,57 @@
+# Dependent Dropdownlist
+
+# FIRST CREATE PROJECT
+
+>>virtualenv -p python3 .
+
+>>source bin/activate
+
+>>pip install django
+
+>>mkdir src
+
+>>cd src
+
+>>django-admin startproject myproject .
+
+>>python manage.py startapp employee
+
+>>python manage.py runserver
+
+
+# 2.EDIT myproject/settings.py
+
+```
+INSTALLED_APPS = [
+    'people.apps.PeopleConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'employee',
+]
+```
+
+```
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+       'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
 # models.py
 
 ```
