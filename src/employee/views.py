@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from .models import Employee, Designation
+from .models import Employee, Designation,Unit
 from .forms import EmployeeForm
 
 
@@ -26,3 +26,8 @@ def load_designations(request):
     department_id = request.GET.get('department')
     designations = Designation.objects.filter(department_id=department_id).order_by('name')
     return render(request, 'employee/designation_dropdown_list_options.html', {'designations': designations})
+
+def load_units(request):
+    office_id = request.GET.get('office')
+    units = Unit.objects.filter(office_id=office_id).order_by('name')
+    return render(request, 'employee/unit_dropdown_list_options.html', {'units': units})

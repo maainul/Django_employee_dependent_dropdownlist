@@ -14,8 +14,11 @@
       <tr>
         <th>Name</th>
         <th>Birthdate</th>
+        <th>Office Name</th>
+        <th>Unit</th>
         <th>Department</th>
         <th>Designation</th>
+
       </tr>
     </thead>
     <tbody>
@@ -23,6 +26,8 @@
         <tr>
           <td><a href="{% url 'employee_change' person.pk %}">{{ person.name }}</a></td>
           <td>{{ person.birthdate }}</td>
+          <td>{{ person.office.name }}</td>
+          <td>{{ person.unit.name }}</td>
           <td>{{ person.department.name }}</td>
           <td>{{ person.designation.name }}</td>
         </tr>
