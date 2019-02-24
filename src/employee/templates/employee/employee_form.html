@@ -28,24 +28,8 @@
           $("#id_designation").html(data);  // replace the contents of the designation input with the data that came from the server
         }
       });
-          $("#id_office").change(function () {
-      var url = $("#employeeForm").attr("data-units-url");  // get the url of the `load_designations` view
-      var officeId = $(this).val();  // get the selected office ID from the HTML input
-
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/employee/ajax/load-designations/)
-        data: {
-          'office': officeId       // add the office id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_units` view function
-          $("#id_unit").html(data);  // replace the contents of the designation input with the data that came from the server
-        }
-      });
 
     });
-
-    });
-
   </script>
 
 {% endblock %}
